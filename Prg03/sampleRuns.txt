@@ -1,0 +1,24 @@
+D:\OopJava\Prg02>java LoanCalc
+Output by Mike Norton
+With an Initial Principal of $1,000.00
+And at a fixed APR of 12.0%
+The loan will be paid off after 10 monthly payments
+Of $100.00, plus a final payment of $58.40
+End of Output
+
+D:\OopJava\Prg02>java LoanCalc
+Output by Mike Norton
+With an Initial Principal of $1,000.00
+And at a fixed APR of 8.5%
+The loan will be paid off after 987 monthly payments
+Of $7.09, plus a final payment of $2.70
+End of Output
+
+D:\OopJava\Prg02>java LoanCalc
+Output by Mike Norton
+With an Initial Principal of $5,000.00
+And at a fixed APR of 8.0%
+A payment of $30.00 will not cover first month's interest.
+End of Output
+
+D:\OopJava\Prg02>

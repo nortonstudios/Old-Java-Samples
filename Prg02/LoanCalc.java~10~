@@ -1,0 +1,86 @@
+import javax.swing.*;
+import java.text.*;
+
+/** Author Mike Norton;  09/08/2003 Modified by Mike Norton; 09/10/2003.
+ * <ul>
+ * <li>   Educational purpose: To create a class that will contain a loop, a
+ * constructor, a "cruncher" method, and a  main method.
+ * * <li>   Functional purpose: To take a principal loan, an intrest rate, and a
+ * monthly payment from a user, and determine the length of time it will take to
+ * fully pay off the loan.
+ * </ul>
+ */
+public class LoanCalc
+{
+   private float principal;
+   private float payAmount;
+   private float intrest;
+   private int payments;
+
+/** constructor */
+   public LoanCalc(float prStart, float paStart, float iStart){
+     principal = prStart;
+     payAmount = paStart;
+     intrest = iStart;
+    }
+/** cruncher method */
+   void  payments()
+   {
+     payments = 0;
+     while(principal > payAmount)
+     {
+        principal = principal - (payAmount - (principal * (intrest / 1200)));
+        payments++;
+     }
+
+   }
+/** main method */
+   public static void main (String[] args)
+   {
+      System.out.println("Output by Mike Norton");
+      NumberFormat cf = NumberFormat.getCurrencyInstance();
+
+      String p = JOptionPane.showInputDialog("Initial Principal?");
+      String a = JOptionPane.showInputDialog("Monthly Payment?");
+      String i = JOptionPane.showInputDialog("APR?");
+
+      LoanCalc loan = new LoanCalc(Float.parseFloat(p), Float.parseFloat(a), Float.parseFloat(i));
+
+      System.out.println("With an Initial Principal of " + cf.format(loan.principal));
+      System.out.println("And at a fixed APR of " + loan.intrest + '%');
+
+      loan.payments();
+
+      System.out.println("The loan will be payed off after " + loan.payments + " monthly payments");
+      System.out.println("Of " + cf.format(loan.payAmount) + ", plus the final payment.");
+
+
+      System.out.println("End of Output");
+      System.exit(0);
+   }
+
+}
+ /**OUTPUT********************************************
+  * Run 1:
+  * E:\OopJava\Prg01>java LoanCalc
+  *Output by Mike Norton
+  *With an Initial Principal of $1,000.00
+  *And at a fixed APR of 12.0%
+  *The loan will be payed off after 10 monthly payments
+  *Of $100.00, plus the final payment.
+  *End of Output
+  *
+  * Run 2:
+  * E:\OopJava\Prg01>java LoanCalc
+  *Output by Mike Norton
+  *With an Initial Principal of $1,000.00
+  *And at a fixed APR of 8.5%
+  *The loan will be payed off after 987 monthly payments
+  *Of $7.09, plus the final payment.
+  *End of Output
+  */
+
+
+
+
+

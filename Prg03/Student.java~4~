@@ -1,0 +1,52 @@
+/**
+ * Mike Norton; 09/12/2003.
+ * <br>
+ * Functional purpose:
+ * <>
+ * Educational purpose:
+ * <ul>
+ * <li>
+  * <li>
+  * </ul>
+ * <br><br>
+  */
+class Student
+{
+   private String name;
+   private int score ;
+   private static String nameChamp;
+   private static int scoreChamp =0;
+
+   /** If this student's score is better than the champion's score,
+   * then:
+   * <ul>
+   * <li>
+   * This student's name will be assigned to the champion's name
+   * <li>
+   * This student's score will be assigned to the champion's score
+   * </ul> */
+   public Student(String iname, int iscore) {
+     name = iname;
+     score = iscore;
+
+     }
+
+   /**
+   * A public class method that returns the champion's name and score*/
+    public void updateChamp() {
+      if(score > scoreChamp){
+      nameChamp = name;
+      scoreChamp = score;
+      }
+    }
+    public static String getChampName(){
+      return nameChamp;
+    }
+    public static int getChampScore(){
+      return scoreChamp;
+    }
+
+}
+
+
+

@@ -1,0 +1,74 @@
+/**
+ * @author
+ * <br><br>
+ * Functional purpose:
+ * <br><br>
+ * <br><br>
+ * Educational purpose:
+ * <ul>
+ * <li>
+  * <li>
+  * </ul>
+ * <br><br>
+  */
+class Student
+{
+   /**
+    * Instance variable for this student's name ( a String)
+    */
+
+
+   /**
+     * Instance variable for this student's score ( an int)
+     */
+
+    /**
+     * Class variable for the champion's name ( a String)
+     */
+
+
+    /**
+      * Instance variable for the current student's score ( an int)
+      */
+
+
+
+
+  /** Constructor: initialize name and score
+  */
+
+
+
+
+  /**
+   * If this student's score is better than the champion's score,
+   * then:
+   * <ul>
+   * <li>
+   * This student's name will be assigned to the champion's name
+   * <li>
+   * This student's score will be assigned to the champion's score
+   * </ul>
+   *
+   */
+  public void updateChamp()
+  {
+
+  }
+
+
+  /**
+   * A public class method that returns the champion's name (a String)
+   */
+
+
+
+
+  /**
+   * A public class method that returns the champion's score (an int)
+   */
+
+
+
+
+} // end class Student

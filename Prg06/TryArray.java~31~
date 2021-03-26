@@ -1,0 +1,124 @@
+import java.applet.Applet;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+
+
+/** Copyright (c) 2001 Art Gittleman, modified by Mike Norton; 10/03/03, 10/06/03.
+ * <br>
+ * <ul><li> Functional Purpose:<ul><li> Searches an array for the first occurrence of a
+ *  value input by the user. <li> 10/06/03: Puts ranbom numbers in the array,
+ * from a user defined seed.</ul>
+ * <li> Educational Purose: <ul><li> To introduce us to arrays. <li> 10/06/03:
+ * To use a random number generator. </ul>
+ * </ul>
+*/
+
+
+public class TryArray extends Applet implements ActionListener{
+    int [] score = new int[7];
+
+
+    private Label targetLabel = new Label("Search for: ");
+    private Label seedLabel = new Label("Seed: ");
+    private TextField targetText = new TextField(5);
+    private TextField seedText = new TextField(5);
+
+    private TextArea resultTextArea = new TextArea(1,30);
+    private TextField [] displayField = new TextField[7];
+    private Panel targetPanel = new Panel();
+    private Panel resultPanel = new Panel();
+    private Panel arrayPanel = new Panel();
+
+    public void init()
+    {
+      setupTargetPanel ();
+      setupResultPanel ();
+      setupArrayPanel();
+
+      this.setLayout(new BorderLayout());
+      this.add(targetPanel, BorderLayout.NORTH);
+      this.add(resultPanel, BorderLayout.CENTER);
+      this.add(arrayPanel, BorderLayout.SOUTH);
+      setFont(new Font("Arial",Font.BOLD,12));
+      this.setBackground(Color.lightGray);
+    }
+    void setupTargetPanel ()
+    {
+
+      targetPanel.add(seedLabel);
+      seedLabel.setBackground(Color.lightGray);
+      targetPanel.add(seedText);
+      targetPanel.add(targetLabel);
+      targetPanel.setBackground(Color.lightGray);
+      targetPanel.add(targetText);
+      seedText.addActionListener(this);
+      seedText.setBackground(Color.cyan);
+      targetText.addActionListener(this);
+      targetText.setBackground(Color.cyan);
+    }
+
+    void setupResultPanel ()
+    {
+      resultTextArea.setText("Target not found yet");
+      resultPanel.add(resultTextArea);
+      resultTextArea.setBackground(Color.pink);
+    }
+
+    /**setupArrayPanel does the following:
+     * <ul> <li> Implements the method that will set up the array panel.
+     * <li> Gives the array panel grid layout with 1 row and 7 columns.
+     * <li> Adds the k-th display field to the array panel.
+     * <li> Sets the text of the text field.
+     * </ul>
+     * <br> 10/06/03: setupArrayPanel no longer:
+     * <ul><li> Sets up the array with values from the 'scores' array.
+     * <li> Formats the text in the array.
+     * </ul>
+     */
+    public void setupArrayPanel()
+    {
+      arrayPanel.setLayout(new GridLayout(0, 7));
+      for(int k=0; k<7; k++)
+      {
+        displayField[k] = new TextField(3);
+        arrayPanel.add(displayField[k]);
+      }
+    }
+    /**10/03/06: actionPerformed does the following:
+     * <ul><li> Determines where data were entered.
+     * <li> If if the data were form the seed text field, actionPerformed
+     * converts the string in the seed field into long, and passes it to the
+     * random number generator which generates 7 numbers, that are placed into
+     * the text field array.
+     * <li> If the data were from the target text feild, actionPreformed
+     * searches the array for that number.  If it is found, its location is
+     * printed to the screen.
+     * </ul>
+     */
+
+    public void actionPerformed(ActionEvent e) {
+      Object source = e.getSource();
+      if (source == seedText)
+      {
+        long seed = Long.parseLong(seedText.getText());
+        Random random = new Random(seed);
+        for(int c= 0; c<7; c++)
+        {
+          score[c] = random.nextInt(101);
+          arrayPanel.add(displayField[c]);
+          displayField[c].setText(String.valueOf(score[c]));
+          displayField[c].setFont(new Font("Courier",Font.BOLD,14));
+        }
+      }else{
+        int testValue = Integer.parseInt(targetText.getText());
+        resultTextArea.setText("Score not found");
+        for (int i = 0; i < score.length; i++)
+          if (testValue == score[i])
+          {
+            resultTextArea.setText("Found score " + testValue + " at index " + (i+1));
+            break;
+          }
+      }
+    }
+}
